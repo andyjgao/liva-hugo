@@ -19,7 +19,7 @@
         {{ if .Params.image }}
         <img src="{{ .Params.Image | absURL }}" class="img-fluid w-100 mb-4" alt="{{ .Title | markdownify }}">
         {{ end }}
-        <div class="content post-text mb-5">
+        <div class="content img-modify post-text mb-5">
           {{ .Content }}
         </div>
 

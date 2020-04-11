@@ -67,7 +67,7 @@
 <!-- /recent post -->
 
 <!-- blog post -->
-<section class="section-sm">
+<section class="section-xs">
   <div class="container">
     <div class="row">
       <div class="col-lg-12 mb-5 mb-lg-0">
@@ -92,7 +92,7 @@
                   <span>{{ .PublishDate.Format "January 02, 2006" }}</span>
                   {{ end }}
                 </div>
-                <p class="card-text">{{ .Summary }}</p>
+                <p class="card-text">{{ .Summary | truncate 150}}</p>
                 <a href="{{ .Permalink }}" class="btn btn-outline-primary">read more</a>
               </div>
             </article>
