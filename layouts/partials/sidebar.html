@@ -3,10 +3,13 @@
   <div class="widget">
     {{ with .Site.GetPage "/about" }}
     <h4 class="widget-title">{{ .Title | markdownify }}</h4>
-    {{ if .Params.Image }}
+    <!-- {{ if .Params.Image }}
     <img src="{{ .Params.Image | absURL }}" alt=""
       class="img-fluid author-thumb-sm d-block mx-auto rounded-circle mb-4">
-    {{ end }}
+    {{ end }} -->
+    {{ $img :=.Resources.GetMatch "author**" }}
+    {{$img := $img.Resize "200x"}}
+    <img class= "img-fluid author-thumb-sm d-block mx-auto  mb-4" src={{$img.RelPermalink}} />
     <p>{{ .Summary }}</p>
     <a href="{{ .Permalink }}" class="btn btn-outline-primary">Know More</a>
     {{ end }}
@@ -16,11 +19,12 @@
     <h4 class="widget-title">Category</h4>
     {{- if isset .Site.Taxonomies "categories" }}
     {{- if not (eq (len .Site.Taxonomies.categories) 0) }}
-    <ul class="list-unstyled">
+    <ul class="list-inline">
       {{- range $name, $items := .Site.Taxonomies.categories }}
       <li><a
           href="{{ `categories/` | relLangURL }}{{ $name | urlize | lower }}">{{ $name | title | humanize }}</a>
       </li>
+    
       {{- end }}
     </ul>
     {{- end }}
@@ -28,7 +32,7 @@
   </div>
   <!-- Tags -->
   <div class="widget">
-    <h4 class="widget-title">Tag</h4>
+    <h4 class="widget-title">Tags</h4>
     {{- if isset .Site.Taxonomies "tags" }}
     {{- if not (eq (len .Site.Taxonomies.tags) 0) }}
     <ul class="list-inline">
@@ -49,8 +53,8 @@
       {{ end }}
     </ul>
   </div>
-  <!-- advertisement -->
+  <!-- advertisement
   <div class="widget">
     <img src="{{`images/promotion.png` | absURL}}" alt="" class="img-fluid">
-  </div>
+  </div> -->
 </div>
